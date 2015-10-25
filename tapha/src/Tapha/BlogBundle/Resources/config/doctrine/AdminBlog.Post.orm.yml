@@ -1,0 +1,50 @@
+Tapha\BlogBundle\Entity\AdminBlog\Post:
+  type:                 entity
+  table:                null
+  repositoryClass:      Tapha\BlogBundle\Entity\AdminBlog\PostRepository
+  id:
+    id:
+      type:             integer
+      generator:
+        strategy:       AUTO
+
+  fields:
+    title:
+      type:             string
+      length:           150
+    accroche:
+      type:             text
+    article:
+      type:             text
+    created:
+      type:             datetime
+      gedmo:
+        timestampable:
+          on: create
+    updated:
+      type:             datetime
+      gedmo:
+        timestampable:
+          on: update
+    publied:
+      type:             datetime
+
+  manyToMany:
+    categories:
+      targetEntity:   Tapha\BlogBundle\Entity\AdminBlog\Category
+      inversedBy:     posts
+      joinTable:
+        name:         post_category
+        joinColumns:
+          post_id:
+            referencedColumnName: id
+            onDelete:             CASCADE
+        inverseJoinColumns:
+          category_id:
+            referencedColumnName: id
+            onDelete:             RESTRICT
+
+  oneToMany:
+    comments:
+      targetEntity:   Tapha\BlogBundle\Entity\AdminBlog\Comment
+      mappedBy:       post

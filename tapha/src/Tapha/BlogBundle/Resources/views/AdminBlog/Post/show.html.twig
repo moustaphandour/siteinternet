@@ -1,0 +1,27 @@
+{% extends 'TaphaBlogBundle::admin-layout.html.twig' %}
+{% set page_title = 'admin.post.view'|trans({}, 'TaphaBlogBundle') ~ ' ' ~ entity.title %}
+
+{% block title %}{{ page_title }} - {{ parent() }}{% endblock %}
+
+{% block content_body %}
+{% include "TaphaBlogBundle:AdminBlog/Post:article.html.twig" %}
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('badp_post') }}">
+            {{ 'admin.back'|trans({}, 'TaphaBlogBundle') }}
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('badp_post_edit', { 'id': entity.id }) }}" method="get">
+            <button type="submit">{{ 'admin.modify'|trans({}, 'TaphaBlogBundle') }}</button>
+        </form>
+    </li>
+    <li>
+        <form action="{{ path('badp_post_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">{{ 'admin.remove'|trans({}, 'TaphaBlogBundle') }}</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

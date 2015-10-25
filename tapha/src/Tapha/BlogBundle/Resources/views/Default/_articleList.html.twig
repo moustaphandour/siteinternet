@@ -1,0 +1,32 @@
+{% if pagination|length %}
+    {% for entity in pagination %}
+    <div class="tapha_blog_article_list {% if loop.index is odd %}odd{% else %}even{% endif %}">
+      <h2><a href="{{ path('blog_post_show', entity.routingParams ) }}">{{ entity.title }}</a></h2>
+      <div class="tapha_blog_accroche">
+      {{ entity.accroche|raw }}
+        <p class="tapha_blog_article_suite">
+            <a href="{{ path('blog_post_show', entity.routingParams) }}">
+                {{ 'default.readmore'|trans({}, 'TaphaBlogBundle') }}...
+            </a>
+        </p>
+      </div>
+      {% if entity.commentsPublied|length == 0 %}
+        {% set link_comment = 'default.no_comments'|trans({}, 'TaphaBlogBundle') %}
+      {% else %}
+        {% set word_comment = 'default.comments'|transchoice(entity.commentsPublied|length,{'%count%':entity.commentsPublied|length}, 'TaphaBlogBundle') %}
+        {% set link_comment = '<a href="' ~ path('blog_post_show', entity.routingParams) ~ '#blog_comments">' ~ word_comment ~ '</a>' %}
+      {% endif %}
+      
+      {% include 'TaphaBlogBundle:Default:_articleCategories.html.twig' with {'entity': entity} %}
+      
+      <p class="tapha_blog_mention clear">
+          {{ 'default.lastupdated_on'|trans({'%date%': entity.updated|date('d/m/Y'), '%time%': entity.updated|date('H:i')}, 'TaphaBlogBundle') }} - {{ link_comment|raw }}
+      </p>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="tapha_blog_article_list odd">{{ 'default.no_article'|trans({}, 'TaphaBlogBundle') }}</div>
+{% endif %}
+<div class="tapha_blog_navigation">
+    {{ knp_pagination_render(pagination)|raw }}
+</div>

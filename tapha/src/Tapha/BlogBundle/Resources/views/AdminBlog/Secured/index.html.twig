@@ -1,0 +1,12 @@
+{% extends 'TaphaBlogBundle::admin-layout.html.twig' %}
+{% set page_title = 'admin.secured.title'|trans({}, 'TaphaBlogBundle') %}
+
+{% block title %}{{ page_title }} - {{ parent() }}{% endblock %}
+
+{% block content_body %}
+<h1>{{ page_title }}</h1>
+
+<p>
+    {{ 'admin.secured.index'|trans({}, 'TaphaBlogBundle') }}
+</p>
+{% endblock %}

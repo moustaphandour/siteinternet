@@ -1,0 +1,25 @@
+{% extends 'TaphaBlogBundle::base.layout.html.twig' %}
+
+{% if form is defined %}
+{% form_theme form 'TaphaBlogBundle::form_div_layout.html.twig' %}
+{% endif %}
+
+{% block title %}
+    {{ parent() }}{% if app.request.get('page') > 1 %} (page {{ app.request.get('page') }}){% endif %}
+{% endblock %}
+
+{% block navigation %}
+{% render controller('TaphaBlogBundle:Default:menu') %}
+{% endblock %}
+{% block blog_body %}
+    {% include "TaphaBlogBundle::flashes.html.twig" %}
+  <div id="tapha_blog_page">
+    <div id="tapha_blog_menu_left">
+      
+    </div>
+    <div id="tapha_blog_body">
+        {% block content_body %}{% endblock %}
+    </div>
+    <div class="clear"></div>
+  </div>
+{% endblock %}

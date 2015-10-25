@@ -1,0 +1,71 @@
+{% extends 'TaphaBlogBundle::admin-layout.html.twig' %}
+{% set page_title = 'admin.category.title'|trans({}, 'TaphaBlogBundle') %}
+
+{% block title %}{{ page_title }} - {{ parent() }}{% endblock %}
+
+{% block content_body %}
+<h1>{{ page_title }}</h1>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('badp_category_new') }}">
+            {{ 'admin.category.create'|trans({}, 'TaphaBlogBundle') }}
+        </a>
+    </li>
+</ul>
+<div class="tapha_blog_navigation">
+    {{ knp_pagination_render(pagination)|raw }}
+</div>
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>{{ 'admin.title'|trans({}, 'TaphaBlogBundle') }}</th>
+            <th>{{ 'admin.category.description'|trans({}, 'TaphaBlogBundle') }}</th>
+            <th>{{ 'admin.actions'|trans({}, 'TaphaBlogBundle') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in pagination %}
+        <tr class="{% if loop.index is odd %}odd{% else %}even{% endif %}">
+            <td>{{ entity.title }}</td>
+            <td>{{ entity.description }}</td>
+            <td>
+                <ul class="records_list_actions">
+                    <li>
+                        <a href="{{ path('badp_category_edit', { 'id': entity.id }) }}">
+                            {{ 'admin.modify'|trans({}, 'TaphaBlogBundle') }}
+                        </a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        {% for sub in entity.children %}
+            <tr class="tapha_blog_sub_category {% if loop.index is odd %}odd{% else %}even{% endif %}">
+                <td>{{ sub.title }}</td>
+                <td>{{ sub.description }}</td>
+                <td>
+                    <ul class="records_list_actions">
+                        <li>
+                            <a href="{{ path('badp_category_edit', { 'id': sub.id }) }}">
+                                {{ 'admin.modify'|trans({}, 'TaphaBlogBundle') }}
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+    {% endfor %}
+    </tbody>
+</table>
+<div class="tapha_blog_navigation">
+    {{ knp_pagination_render(pagination)|raw }}
+</div>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('badp_category_new') }}">
+            {{ 'admin.category.create'|trans({}, 'TaphaBlogBundle') }}
+        </a>
+    </li>
+</ul>
+{% endblock %}

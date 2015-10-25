@@ -1,0 +1,8 @@
+sonata_formatter:
+
+    # ...
+
+    ckeditor:
+        templates:
+            browser: 'SonataFormatterBundle:Ckeditor:browser.html.twig'
+            upload:

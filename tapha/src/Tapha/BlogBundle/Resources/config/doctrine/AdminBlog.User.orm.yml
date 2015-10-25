@@ -1,0 +1,8 @@
+Tapha\BlogBundle\Entity\AdminBlog\User:
+    type:  entity
+    table: user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO

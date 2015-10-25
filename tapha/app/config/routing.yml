@@ -1,0 +1,10 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+tapha_blog:
+    resource: "@TaphaBlogBundle/Resources/config/routing.yml"
+    prefix: /
+
+tapha_blog_admin:
+    resource: "@TaphaBlogBundle/Resources/config/routing_admin.yml"
+    prefix: /admin

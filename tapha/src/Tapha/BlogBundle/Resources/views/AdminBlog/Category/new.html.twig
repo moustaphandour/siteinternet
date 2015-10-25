@@ -1,0 +1,21 @@
+{% extends 'TaphaBlogBundle::admin-layout.html.twig' %}
+{% set page_title = 'admin.category.create'|trans({}, 'TaphaBlogBundle') %}
+
+{% block title %}{{ page_title }} - {{ parent() }}{% endblock %}
+
+{% block content_body %}
+<h1>{{ page_title }}</h1>
+
+<form action="{{ path('badp_category_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('badp_category') }}">
+            {{ 'admin.back'|trans({}, 'TaphaBlogBundle') }}
+        </a>
+    </li>
+    <li><button type="submit">{{ 'admin.register'|trans({}, 'TaphaBlogBundle') }}</button></li>
+</ul>
+</form>
+{% endblock %}

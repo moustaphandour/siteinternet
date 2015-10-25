@@ -1,0 +1,13 @@
+{% extends 'TaphaBlogBundle::layout.html.twig' %}
+{% set page_title = category.title %}
+
+{% if category.parent %}
+    {% set page_title = category.parent.title ~ " : " ~ page_title %}
+{% endif %}
+
+{% block title %}{{ page_title }} - {{ parent() }}{% endblock %}
+
+{% block content_body %}
+  <h1>{{ page_title }}</h1>
+  {% include "TaphaBlogBundle:Default:_articleList.html.twig" %}
+{% endblock %}

@@ -1,0 +1,43 @@
+blog_homepage:
+  defaults:     { _controller: "TaphaBlogBundle:Default:homepage" }
+  pattern:      "/"
+  requirements: { _method: GET }
+
+blog_rss:
+  defaults:     { _controller: "TaphaBlogBundle:Default:rss" }
+  pattern:      "/flux.rss"
+  requirements: { _method: GET, _format: rss }
+
+blog_category_list:
+  defaults:     { _controller: "TaphaBlogBundle:Default:category" }
+  pattern:      "/{id}-{slug}/"
+  requirements:
+    _method: GET
+    slug: "[a-z0-9\\-]+"
+    id: "^\\d+$"
+
+blog_post_show:
+  defaults:     { _controller: "TaphaBlogBundle:Default:showArticle" }
+  pattern:      "/{category_id}-{category}/{id}-{slug}.html"
+  requirements:
+    _method: GET
+    slug: "[a-z0-9\\-]+"
+    category: "[a-z0-9\\-]+"
+    id: "^\\d+$"
+    category_id: "^\\d+$"
+
+blog_post_comment:
+  defaults:     { _controller: "TaphaBlogBundle:Default:addComment" }
+  pattern:      "/com-article/{id}"
+  requirements:
+    _method: POST
+    id: "^\\d+$"
+
+blog_post_comment_confirm:
+  defaults:     { _controller: "TaphaBlogBundle:Default:commentConfirm" }
+  pattern:      "/com-confirm/{email}/{token}"
+  requirements:
+    _method: GET
+
+elfinder:
+    resource: "@FMElfinderBundle/Resources/config/routing.yml"

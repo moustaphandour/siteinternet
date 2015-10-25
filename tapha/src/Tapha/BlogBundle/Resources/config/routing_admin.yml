@@ -1,0 +1,89 @@
+badp_home:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Secured:index" }
+  pattern:      "/"
+  requirements: { _method: GET }
+
+badp_category:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Category:index" }
+  pattern:      "/category/"
+  requirements: { _method: GET }
+
+badp_category_create:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Category:create" }
+  pattern:      "/category/"
+  requirements: { _method: POST }
+
+badp_category_new:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Category:new" }
+  pattern:      "/category/new"
+  requirements: { _method: GET }
+
+badp_category_edit:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Category:edit" }
+  pattern:      "/category/{id}/edit"
+  requirements: { _method: GET, id: "^\\d+$" }
+
+badp_category_update:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Category:update" }
+  pattern:      "/category/{id}"
+  requirements: { _method: PUT, id: "^\\d+$" }
+
+badp_category_delete:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Category:delete" }
+  pattern:      "/category/{id}"
+  requirements: { _method: DELETE, id: "^\\d+$" }
+
+badp_comment:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Comment:index" }
+  pattern:      "/comment/"
+  requirements: { _method: GET }
+
+badp_comment_edit:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Comment:edit" }
+  pattern:      "/comment/{id}/edit"
+  requirements: { _method: GET, id: "^\\d+$" }
+
+badp_comment_update:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Comment:update" }
+  pattern:      "/comment/{id}"
+  requirements: { _method: PUT, id: "^\\d+$" }
+
+badp_comment_delete:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Comment:delete" }
+  pattern:      "/comment/{id}"
+  requirements: { _method: DELETE, id: "^\\d+$" }
+
+badp_post:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Post:index" }
+  pattern:      "/post/"
+  requirements: { _method: GET }
+
+badp_post_show:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Post:show" }
+  pattern:      "/post/{id}"
+  requirements: { _method: GET, id: "^\\d+$" }
+
+badp_post_create:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Post:create" }
+  pattern:      "/post/"
+  requirements: { _method: POST }
+
+badp_post_new:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Post:new" }
+  pattern:      "/post/new"
+  requirements: { _method: GET }
+
+badp_post_edit:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Post:edit" }
+  pattern:      "/post/{id}/edit"
+  requirements: { _method: GET, id: "^\\d+$" }
+
+badp_post_update:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Post:update" }
+  pattern:      "/post/{id}"
+  requirements: { _method: PUT, id: "^\\d+$" }
+
+badp_post_delete:
+  defaults:     { _controller: "TaphaBlogBundle:AdminBlog/Post:delete" }
+  pattern:      "/post/{id}"
+  requirements: { _method: DELETE, id: "^\\d+$" }

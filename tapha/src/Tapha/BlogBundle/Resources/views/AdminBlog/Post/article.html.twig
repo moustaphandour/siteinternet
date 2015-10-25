@@ -1,0 +1,16 @@
+<h1>{{ entity.title }}</h1>
+
+{% include 'TaphaBlogBundle:Default:_articleCategories.html.twig' with {'entity': entity} %}
+
+<div class="tapha_blog_accroche">
+{{ entity.accroche|raw }}
+</div>
+
+<div id="tapha_blog_article">
+{{ entity.article|raw }}
+</div>
+
+<p class="tapha_blog_mention">
+{#Article publié le {{ entity.publied|date('d/m/Y') }} à {{ entity.publied|date('H:i') }}#}
+{{ 'admin.post.published_at'|trans({'%date%': entity.publied|date('d/m/Y'), '%time%': entity.publied|date('H:i')}, 'TaphaBlogBundle') }}
+</p>

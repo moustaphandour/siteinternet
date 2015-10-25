@@ -1,0 +1,42 @@
+{% extends 'TaphaBlogBundle::admin-layout.html.twig' %}
+{% set page_title = 'admin.post.title_edit'|trans({}, 'TaphaBlogBundle') ~ ' "' ~ entity.title ~ '"' %}
+
+{% block title %}{{ page_title }} - {{ parent() }}{% endblock %}
+
+{% block content_body %}
+<h1>{{ page_title }}</h1>
+
+<form name="post_edit" action="{{ path('badp_post_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <input type="hidden" name="_method" value="PUT" />
+    {{ form_widget(edit_form) }}
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('badp_post') }}">
+            {{ 'admin.back'|trans({}, 'TaphaBlogBundle') }}
+        </a>
+    </li>
+    <li><button type="button" onclick="forms.post_edit.ckSubmit();">{{ 'admin.register'|trans({}, 'TaphaBlogBundle') }}</button></li>
+    <li>
+        <form action="{{ path('badp_post_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">{{ 'admin.remove'|trans({}, 'TaphaBlogBundle') }}</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+HTMLFormElement.prototype.ckSubmit = function()        {
+    for(var ck in CKEDITOR.instances)
+        {
+            document.getElementById(ck).value = CKEDITOR.instances[ck].getData();
+        }
+    HTMLFormElement.prototype.submit.apply(this, arguments);
+}
+</script>
+{% endblock %}

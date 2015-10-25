@@ -1,0 +1,16 @@
+
+{% extends '::base.html.twig' %}
+    
+{% block body %}
+    {% block blog_body %}{% endblock %} 
+{% endblock %} 
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/taphablog/css/default.css') }}" type="text/css" media="all" />
+  <link rel="stylesheet" href="{{ asset('bundles/taphablog/css/admin-blog.css') }}" type="text/css" media="all" />
+  <link rel="stylesheet" href="{{ asset('bundles/taphablog/css/colours.css') }}" type="text/css" media="all" />
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+{% endblock %}

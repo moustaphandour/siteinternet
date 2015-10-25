@@ -1,0 +1,63 @@
+{% extends 'TaphaBlogBundle::admin-layout.html.twig' %}
+{% set page_title = 'admin.post.title'|trans({}, 'TaphaBlogBundle') %}
+
+{% block title %}{{ page_title }} - {{ parent() }}{% endblock %}
+
+{% block content_body %}
+<h1>{{ page_title }}</h1>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('badp_post_new') }}">
+            {{ 'admin.post.create'|trans({}, 'TaphaBlogBundle') }}
+        </a>
+    </li>
+</ul>
+
+<div class="tapha_blog_navigation">
+    {{ knp_pagination_render(pagination)|raw }}
+</div>
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>{{ 'admin.categories'|trans({}, 'TaphaBlogBundle') }}</th>
+            <th>{{ 'admin.title'|trans({}, 'TaphaBlogBundle') }}</th>
+            <th>{{ 'admin.post.created'|trans({}, 'TaphaBlogBundle') }}</th>
+            <th>{{ 'admin.post.modified'|trans({}, 'TaphaBlogBundle') }}</th>
+            <th>{{ 'admin.actions'|trans({}, 'TaphaBlogBundle') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in pagination %}
+        <tr class="{% if loop.index is odd %}odd{% else %}even{% endif %}">
+            <td>{{ entity.categories|join('<br />')|raw }}</td>
+            <td><a href="{{ path('badp_post_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
+            <td>{% if entity.created %}{{ entity.created|date('d/m/Y') }}{% endif %}</td>
+            <td>{% if entity.updated %}{{ entity.updated|date('d/m/Y') }}{% endif %}</td>
+            <td>
+                <ul class="records_list_actions">
+                    <li>
+                        <a href="{{ path('badp_post_show', { 'id': entity.id }) }}">{{ 'admin.post.view'|trans({}, 'TaphaBlogBundle') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('badp_post_edit', { 'id': entity.id }) }}">{{ 'admin.post.edit'|trans({}, 'TaphaBlogBundle') }}</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div class="tapha_blog_navigation">
+    {{ knp_pagination_render(pagination)|raw }}
+</div>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('badp_post_new') }}">
+            {{ 'admin.post.create'|trans({}, 'TaphaBlogBundle') }}
+        </a>
+    </li>
+</ul>
+
+{% endblock %}

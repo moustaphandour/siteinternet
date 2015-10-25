@@ -1,0 +1,8 @@
+{% extends 'TaphaBlogBundle::layout.html.twig' %}
+{% set page_title = 'menu.welcome'|trans({}, 'TaphaBlogBundle') %}
+
+{% block title %}{{ page_title }} - {{ parent() }}{% endblock %}
+
+{% block content_body %}
+    {% include "TaphaBlogBundle:Default:_articleList.html.twig" %}
+{% endblock %}
