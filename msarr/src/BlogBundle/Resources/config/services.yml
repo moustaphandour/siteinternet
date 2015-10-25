@@ -1,0 +1,32 @@
+services:
+    app.admin.post:
+        class: BlogBundle\Admin\PostAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Post" }
+        arguments:
+            - ~
+            - BlogBundle\Entity\Article
+            - ~
+        calls:
+            - [ setTranslationDomain, [BlogBundle]]
+    app.admin.category:
+        class: BlogBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Category" }
+        arguments:
+            - ~
+            - BlogBundle\Entity\Taxonomy
+            - ~
+        calls:
+            - [ setTranslationDomain, [BlogBundle]]
+    # app.admin.image:
+    #     class: BlogBundle\Admin\ImageAdmin
+    #     tags:
+    #         - { name: sonata.admin, manager_type: orm, group: "Media", label: "Category" }
+    #     arguments:
+    #         - ~
+    #         - BlogBundle\Entity\Image
+    #         - ~
+    #     calls:
+    #         - [ setTranslationDomain, [BlogBundle]]
+
