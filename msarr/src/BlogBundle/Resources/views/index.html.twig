@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+  <a href="#">Accueil</a>
+  <ul>
+      	{% for root in root_category if root.name == "news"%}
+			{% for category in root.getChildren() %}
+    			<li>
+      				<a href="#">{{category.name}}</a>
+      				<ul>
+      					{% for children in category.getChildren() %}
+        					<li><a href="#">{{children.name}}</a></li>
+        				{%endfor%}
+      				</ul>
+    			</li>
+    		{%endfor%}
+    	{%endfor%}
+  </ul>
+      
+{% endblock %}

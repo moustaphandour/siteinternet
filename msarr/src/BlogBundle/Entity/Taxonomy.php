@@ -29,16 +29,10 @@ class Taxonomy
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=300, nullable=false)
+     * @ORM\OneToOne(targetEntity="BlogBundle\Entity\Term", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="term_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
-    protected $title;
-
-    /**
-     * @Gedmo\Slug(fields={"title"}, unique=true, updatable=false)
-     * @ORM\Column(type="string")
-     */
-    protected $slug;
-
+    protected $term;
 
     /**
      * @ORM\Column(type="string", nullable=false)
@@ -117,7 +111,7 @@ class Taxonomy
     /**
      * @param mixed $term
      */
-    public function setTerm(Term $term)
+    public function setTerm(BlogTerm $term)
     {
         $this->term = $term;
         return $this;
@@ -151,7 +145,7 @@ class Taxonomy
     /**
      * @param mixed $parent
      */
-    public function setParent(Taxonomy $parent=null)
+    public function setParent(BlogTaxonomy $parent=null)
     {
         $this->parent = $parent;
         return $this;
@@ -210,6 +204,11 @@ class Taxonomy
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->getTerm()->__toString();
+    }
+
     /**
      * @return mixed
      */
@@ -242,45 +241,6 @@ class Taxonomy
     {
         $this->tagged = $tagged;
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param mixed $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * @param mixed $slug
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-        return $this;
-    }
-
-    function __toString()
-    {
-        return $this->getTitle();
     }
 
     /**

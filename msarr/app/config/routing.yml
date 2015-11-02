@@ -1,10 +1,14 @@
 blog:
     resource: "@BlogBundle/Resources/config/routing.yml"
-    prefix:   /
+
+news:
+    resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
+    prefix: /news
 
 app:
-    resource: "@AppBundle/Controller/"
+    resource: "@AppBundle/Controller/Frontend/BlogController.php"
     type:     annotation
+    prefix:   /
 
 sonata_user_security:
     resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
@@ -57,3 +61,6 @@ media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
 
+liip_theme:
+    resource: "@LiipThemeBundle/Resources/config/routing.xml"
+    prefix: /theme

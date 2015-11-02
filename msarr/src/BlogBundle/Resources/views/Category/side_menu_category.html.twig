@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block header %}
+    <header class="main-header">
+            {% block avanzu_logo %}
+                <a href="#" class="logo">
+                    <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                    {{ block('title') }}
+                </a>
+            {% endblock %}
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <ul id="ulNavMenu">
+					<li>
+						<a href="/" class="aMenu">Accueil</a>
+					</li>
+					<div id="menuSmartphone">
+				    	{% for root in root_category if root.name == "news"%}
+				    		{% for category in root.getChildren() %}
+				        	
+				        	<li>
+				       			<a href="" class="aMenu aSMenu">{{ category.name }}</a>
+				       			<div class="sousMenu">
+				        			{% for children in category.getChildren() %}
+				        				<div class="sousMenuCol">
+				        					<span class="sousMenuTitre"> {{ children.name }} </span>
+				        				</div>
+				    				{% endfor %}
+				        		</div>
+				        	</li>
+				    				{% endfor %}
+
+				    	{% endfor %}
+				    </div>
+				</ul>
+            </nav>
+        </header>
+    {% endblock %}
+
+
+
+
+
+

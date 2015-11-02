@@ -40,6 +40,20 @@ class Article
      */
     protected $title;
 
+    /**
+     * @ORM\Column(type="string", length=140, nullable=true)
+     * @Assert\Length(
+     *      max = 140,
+     *      maxMessage = "Article excerpt should not be longer than {{ limit }} characters"
+     * )
+     */
+    protected $excerpt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     * @ORM\JoinColumn(name="excerpt_photo_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    protected $excerptPhoto;
 
     /**
      * @ORM\Column(type="text", nullable=false)
@@ -91,7 +105,7 @@ class Article
 
     /**
      * @ORM\ManyToMany(targetEntity="BlogBundle\Entity\Taxonomy", inversedBy="articles")
-     * @ORM\JoinTable(name="article_category_relation",
+     * @ORM\JoinTable(name="ed_article_category_relation",
      *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")})
      *
@@ -100,7 +114,7 @@ class Article
 
     /**
      * @ORM\ManyToMany(targetEntity="BlogBundle\Entity\Taxonomy", inversedBy="tagged")
-     * @ORM\JoinTable(name="article_tags_relation",
+     * @ORM\JoinTable(name="ed_article_tags_relation",
      *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")})
      *
@@ -116,11 +130,6 @@ class Article
      * @ORM\OneToMany(targetEntity="BlogBundle\Entity\ArticleMeta", mappedBy="article", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $metaData;
-
-    /**
-   * @ORM\OneToOne(targetEntity="BlogBundle\Entity\Image", cascade={"persist"})
-   */
-    private $image;
 
     /**
      * @ORM\PrePersist
@@ -230,6 +239,47 @@ class Article
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getExcerpt()
+    {
+        return $this->excerpt;
+    }
+
+    /**
+     * Use this over getExcept in frontend display
+     * @return mixed
+     */
+    public function getExcerptText()
+    {
+        if($this->excerpt)
+        {
+            return $this->excerpt;
+        }
+        else
+        {
+            $rowExcerpt = strip_tags($this->content);
+
+            if( strlen($rowExcerpt) > self::EXCERPT_LENGTH)
+            {
+                $break = strpos($rowExcerpt, ' ', self::EXCERPT_LENGTH - 10);
+                $rowExcerpt = substr($rowExcerpt, 0, $break) . '...';
+            }
+
+            return $rowExcerpt;
+        }
+    }
+
+    /**
+     * @param mixed $excerpt
+     */
+    public function setExcerpt($excerpt)
+    {
+        $this->excerpt = $excerpt;
+
+        return $this;
+    }
 
     /**
      * @return mixed
@@ -266,17 +316,6 @@ class Article
 
         return $this;
     }
-
-    public function setImage(Image $image = null)
-    {
-        $this->image = $image;
-    }
-
-    public function getImage()
-    {
-        return $this->image;
-    }
-
 
     /**
      * @return mixed
@@ -367,6 +406,24 @@ class Article
     }
 
 
+
+    /**
+     * @return mixed
+     */
+    public function getExcerptPhoto()
+    {
+        return $this->excerptPhoto;
+    }
+
+    /**
+     * @param mixed $excerptPhoto
+     */
+    public function setExcerptPhoto($excerptPhoto)
+    {
+        $this->excerptPhoto = $excerptPhoto;
+
+        return $this;
+    }
 
     /**
      * @return mixed
@@ -582,5 +639,3 @@ class Article
     }
 
 }
-
-
