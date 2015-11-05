@@ -54,7 +54,7 @@ class Comment
     protected $parent;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BlogBundle\Entity\Article", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="BlogBundle\Entity\Post", inversedBy="comments")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
     protected $article;
@@ -80,7 +80,7 @@ class Comment
     protected $modifiedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BlogBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="author_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
      * @var ArticleCommenter
      */

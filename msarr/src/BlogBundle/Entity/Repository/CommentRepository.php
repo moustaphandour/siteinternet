@@ -4,7 +4,7 @@ namespace BlogBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping;
-use BlogBundle\Entity\Article;
+use BlogBundle\Entity\Post;
 use BlogBundle\Entity\Comment;
 
 class CommentRepository extends EntityRepository

@@ -1,14 +1,15 @@
+HTML5_verti_template:
+    resource: "@HTML5VertiTemplateBundle/Resources/config/routing.yml"
 blog:
     resource: "@BlogBundle/Resources/config/routing.yml"
 
+app:
+    resource: "@AppBundle/Controller/Frontend/"
+    type:     annotation
+    prefix:   /
 news:
     resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
     prefix: /news
-
-app:
-    resource: "@AppBundle/Controller/Frontend/BlogController.php"
-    type:     annotation
-    prefix:   /
 
 sonata_user_security:
     resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
@@ -64,3 +65,6 @@ media:
 liip_theme:
     resource: "@LiipThemeBundle/Resources/config/routing.xml"
     prefix: /theme
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

@@ -3,6 +3,10 @@
 
 namespace BlogBundle\Admin;
 
+use BlogBundle\Handler\BlogUserHandler;
+use Doctrine\ORM\EntityRepository;
+use BlogBundle\Entity\Post;
+use BlogBundle\Admin\TermAdmin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -14,28 +18,81 @@ class PostAdmin extends Admin
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
+        //$object = $formMapper->getData();
         $formMapper
-            ->add('image', 'sonata_type_admin', 
-                array('delete' => false
-                ))
             ->add('title', 'text',
                 array(
                     'required' => true,
                     'label' => 'Title:',
                     'attr' => array(
-                        'class' => 'form-control form-control--lg margin--b',
                         'placeholder' => 'Enter title of the article'
                     )
                 ))
-            ->add('content', 'ckeditor', array(
-                'config_name' => 'extended'
+            ->add('categories', 'entity', array(
+                'class' => 'Application\Sonata\ClassificationBundle\Entity\Category',
+                'required' => false,
+                'expanded' => true,
+                'multiple' => true,
+                'attr' => array(
+                    'placeholder' => 'Select category'
+                )))
+            ->add('excerptPhoto', 'sonata_type_model_list', array('required' => false), array(
+                    'link_parameters' => array(
+                        'context'      => 'news',
+                        'hide_context' => true,
+                    ),
                 ))
+            ->add('excerpt', 'textarea',
+                array(
+                    'required' => false,
+                    'label' => 'Excerpt text:',
+                    'attr' => array(
+                        'rows'  => 2,
+                        'placeholder' => 'Enter excerpt text'
+                    )
+                ))
+            ->add('content', 'ckeditor',
+                array(
+                    'required' => false,
+                    'label' => 'Content:',
+                    'attr' => array(
+                    )
+                ))
+            ->add('tags','text', array(
+                'required' => false,
+                'attr' => array(
+                    "class" => "form-control form-control--lg margin--halfb",
+                    "placeholder" => "Enter tags",
+                    "data-role" => "tagsinput"
+                )
+                ))
+            ->add('metaExtras', 'hidden', array(
+                'mapped' => false
+            ))
             ->add('author', 'entity', array(
-                'class' => 'BlogBundle\Entity\User'
-            ))
-             ->add('categories', 'entity', array(
-                'class' => 'BlogBundle\Entity\Taxonomy'
-            ))
+                    'label' => 'Author:',
+                    'required' => true,
+                    'class' => 'Application\Sonata\UserBundle\Entity\User',
+                    'placeholder' => 'Select author',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('a')
+                            ->where('a.roles like :type')
+                            ->orderBy('a.username', 'ASC')
+                            ->setParameter('type', '%ROLE_BLOG_ADMIN%');
+
+                    },
+                    'attr' => array(
+                        'class' => 'form-control form-control--lg color-placeholder',
+                    )
+                ))
+            ->add('status', 'choice', array(
+                    'label' => 'Status:',
+                    'choices' => array(
+                        Post::STATUS_PUBLISHED => "Published",
+                        Post::STATUS_DRAFTED => "Draft"
+                    ),
+                    'required' => true,
+                ))
        ;
     }
 
@@ -44,7 +101,7 @@ class PostAdmin extends Admin
     {
        $datagridMapper
             ->add('title')
-            ->add('author')
+            ->add('parent')
        ;
     }
 
@@ -52,9 +109,8 @@ class PostAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
-            ->add('slug')
-            ->add('author')
+            ->addIdentifier('blogDisplayName')
+            ->add('role')
        ;
     }
 
@@ -62,49 +118,8 @@ class PostAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-           ->add('title')
-           ->add('slug')
-           ->add('author')
+           ->add('blogDisplayName')
+           ->add('role')
        ;
     }
-
-
-    public function prePersist($page) {
-        $this->manageEmbeddedImageAdmins($page);
-    }
-    public function preUpdate($page) {
-        $this->manageEmbeddedImageAdmins($page);
-    }
-    private function manageEmbeddedImageAdmins($page) 
-    {
-        // Cycle through each field
-        foreach ($this->getFormFieldDescriptions() as $fieldName => $fieldDescription) {
-            // detect embedded Admins that manage Images
-            if ($fieldDescription->getType() === 'sonata_type_admin' &&
-                ($associationMapping = $fieldDescription->getAssociationMapping()) &&
-                $associationMapping['targetEntity'] === 'BlogBundle\Entity\Image'
-            ) {
-                $getter = 'get' . $fieldName;
-                $setter = 'set' . $fieldName;
-
-                /** @var Image $image */
-                $image = $page->$getter();
-                if ($image) 
-                {
-                    if ($image->getFile())
-                    {
-                        // update the Image to trigger file management
-                        $image->refreshUpdated();
-                        $image->setCreatedAt(new \DateTime('now'));
-                    } 
-                    elseif (!$image->getFile() && !$image->getFilename())
-                     {
-                        // prevent Sf/Sonata trying to create and persist an empty Image
-                        $page->$setter(null);
-                    }
-                }
-            }
-        }
-    }
-
 }

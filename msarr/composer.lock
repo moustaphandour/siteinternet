@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bec31acf57e6359d4f2eb751340fb64e",
-    "content-hash": "5e6e9d259d4c54b8a64ad98088cb79c6",
+    "hash": "cbb174b859f42a61d41d17ee5dc06ca8",
+    "content-hash": "d69ab21a03bb6aca56f60b4d7320f210",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -424,16 +424,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.5.0",
+            "version": "v1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "eb8a73619af4f1c8711e2ce482f5de3643258a1f"
+                "reference": "2b9cec5a5e722010cbebc91713d4c11eaa064d5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/eb8a73619af4f1c8711e2ce482f5de3643258a1f",
-                "reference": "eb8a73619af4f1c8711e2ce482f5de3643258a1f",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/2b9cec5a5e722010cbebc91713d4c11eaa064d5e",
+                "reference": "2b9cec5a5e722010cbebc91713d4c11eaa064d5e",
                 "shasum": ""
             },
             "require": {
@@ -490,7 +490,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-10-28 11:27:45"
+            "time": "2015-11-02 18:35:48"
         },
         {
             "name": "doctrine/collections",
@@ -1222,6 +1222,144 @@
                 "json"
             ],
             "time": "2014-11-08 10:51:34"
+        },
+        {
+            "name": "evheniy/html5-cache-bundle",
+            "version": "dev-master",
+            "target-dir": "Evheniy/HTML5CacheBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/evheniy/HTML5CacheBundle.git",
+                "reference": "a4e40fdefa9b8e8274d022d8c6ab8ee65044af01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/evheniy/HTML5CacheBundle/zipball/a4e40fdefa9b8e8274d022d8c6ab8ee65044af01",
+                "reference": "a4e40fdefa9b8e8274d022d8c6ab8ee65044af01",
+                "shasum": ""
+            },
+            "require": {
+                "evheniy/jquery-bundle": ">=1.0",
+                "php": ">=5.3.0",
+                "symfony/symfony": ">=2.3"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Evheniy\\HTML5CacheBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "evheniy",
+                    "homepage": "https://github.com/evheniy"
+                }
+            ],
+            "description": "The HTML5CacheBundle adds the ability to add HTML5 Application Cache to your application.",
+            "keywords": [
+                "Cache Manifest",
+                "HTML5",
+                "HTML5 Application Cache",
+                "cache",
+                "symfony"
+            ],
+            "time": "2015-09-01 19:07:36"
+        },
+        {
+            "name": "evheniy/html5-verti-template-bundle",
+            "version": "1.0",
+            "target-dir": "Evheniy/HTML5VertiTemplateBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/evheniy/HTML5VertiTemplateBundle.git",
+                "reference": "9f405fe18cef392379bc54d40728b098a962c279"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/evheniy/HTML5VertiTemplateBundle/zipball/9f405fe18cef392379bc54d40728b098a962c279",
+                "reference": "9f405fe18cef392379bc54d40728b098a962c279",
+                "shasum": ""
+            },
+            "require": {
+                "evheniy/html5-cache-bundle": "dev-master",
+                "evheniy/jquery-bundle": "dev-master",
+                "php": ">=5.3.0",
+                "symfony/assetic-bundle": "~2.5-dev",
+                "symfony/symfony": ">=2.4"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Evheniy\\HTML5VertiTemplateBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "evheniy",
+                    "homepage": "https://github.com/evheniy"
+                }
+            ],
+            "description": "The HTML5VertiTemplateBundle adds the ability to add free responsive site template by HTML5 to your application.",
+            "keywords": [
+                "HTML5",
+                "Verty",
+                "responsive",
+                "symfony",
+                "template"
+            ],
+            "time": "2015-05-04 12:28:29"
+        },
+        {
+            "name": "evheniy/jquery-bundle",
+            "version": "dev-master",
+            "target-dir": "Evheniy/JqueryBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/evheniy/JqueryBundle.git",
+                "reference": "41238858bd045a77d0fe6e6e97a467b46c396031"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/evheniy/JqueryBundle/zipball/41238858bd045a77d0fe6e6e97a467b46c396031",
+                "reference": "41238858bd045a77d0fe6e6e97a467b46c396031",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/assetic-bundle": "~2.5-dev",
+                "symfony/symfony": ">=2.3"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Evheniy\\JqueryBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "evheniy",
+                    "homepage": "https://github.com/evheniy"
+                }
+            ],
+            "description": "The JqueryBundle adds the ability to add latest jQuery to your application.",
+            "keywords": [
+                "jquery",
+                "latest",
+                "symfony"
+            ],
+            "time": "2015-09-01 18:01:07"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -2346,6 +2484,81 @@
             "time": "2015-06-25 17:26:56"
         },
         {
+            "name": "liip/imagine-bundle",
+            "version": "1.3.1",
+            "target-dir": "Liip/ImagineBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liip/LiipImagineBundle.git",
+                "reference": "91ed657efca36693c6d5ab02c5cc2f7cd9bd3ee9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/91ed657efca36693c6d5ab02c5cc2f7cd9bd3ee9",
+                "reference": "91ed657efca36693c6d5ab02c5cc2f7cd9bd3ee9",
+                "shasum": ""
+            },
+            "require": {
+                "imagine/imagine": "~0.5,<0.7",
+                "php": ">=5.3.2",
+                "symfony/filesystem": "~2.3 || ~3.0",
+                "symfony/finder": "~2.3 || ~3.0",
+                "symfony/framework-bundle": "~2.3 || ~3.0",
+                "symfony/options-resolver": "~2.3 || ~3.0"
+            },
+            "require-dev": {
+                "amazonwebservices/aws-sdk-for-php": "~1.0",
+                "aws/aws-sdk-php": "~2.4",
+                "doctrine/cache": "~1.1",
+                "doctrine/mongodb-odm": "1.0.*",
+                "doctrine/orm": "~2.3",
+                "ext-gd": "*",
+                "phpunit/phpunit": "~4.3",
+                "psr/log": "~1.0",
+                "symfony/browser-kit": "~2.3 || ~3.0",
+                "symfony/console": "~2.3 || ~3.0",
+                "symfony/form": "~2.3 || ~3.0",
+                "symfony/phpunit-bridge": "~2.3 || ~3.0",
+                "symfony/yaml": "~2.3 || ~3.0",
+                "twig/twig": "~1.12"
+            },
+            "suggest": {
+                "amazonwebservices/aws-sdk-for-php": "Add it if you'd like to use aws v1 resolver",
+                "aws/aws-sdk-php": "Add it if you'd like to use aws v2 or v3 resolver",
+                "monolog/monolog": "If you'd want to write logs",
+                "twig/twig": "If you'd want to use some handy twig filters, version 1.12 or greater required"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev",
+                    "dev-0.x": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Liip\\ImagineBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Liip and other contributors",
+                    "homepage": "https://github.com/liip/LiipImagineBundle/contributors"
+                }
+            ],
+            "description": "This Bundle assists in imagine manipulation using the imagine library",
+            "homepage": "http://liip.ch",
+            "keywords": [
+                "image",
+                "imagine"
+            ],
+            "time": "2015-08-27 11:27:33"
+        },
+        {
             "name": "liip/theme-bundle",
             "version": "dev-master",
             "source": {
@@ -2965,12 +3178,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "fbea66f5d909b8f3df5c586831119b3b26eba60c"
+                "reference": "54d4e2a5e3ad2c277b733f70aae4e5acdd2cc701"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/fbea66f5d909b8f3df5c586831119b3b26eba60c",
-                "reference": "fbea66f5d909b8f3df5c586831119b3b26eba60c",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/54d4e2a5e3ad2c277b733f70aae4e5acdd2cc701",
+                "reference": "54d4e2a5e3ad2c277b733f70aae4e5acdd2cc701",
                 "shasum": ""
             },
             "require": {
@@ -3045,7 +3258,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2015-11-01 08:24:22"
+            "time": "2015-11-04 10:13:47"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -3422,12 +3635,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "3751e894e658ca9c6b59deda696019840494de15"
+                "reference": "c7ae6b07e93f49f14cbe1a5cc2231f49d97f947c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/3751e894e658ca9c6b59deda696019840494de15",
-                "reference": "3751e894e658ca9c6b59deda696019840494de15",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/c7ae6b07e93f49f14cbe1a5cc2231f49d97f947c",
+                "reference": "c7ae6b07e93f49f14cbe1a5cc2231f49d97f947c",
                 "shasum": ""
             },
             "require": {
@@ -3487,7 +3700,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2015-10-30 12:28:59"
+            "time": "2015-11-02 16:38:48"
         },
         {
             "name": "sonata-project/easy-extends-bundle",
@@ -3792,12 +4005,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataMediaBundle.git",
-                "reference": "64db2295bc272a90c9035c72299d7f5b795199ef"
+                "reference": "27202a1acdd03f426e63dc2b25b019e490569fd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/64db2295bc272a90c9035c72299d7f5b795199ef",
-                "reference": "64db2295bc272a90c9035c72299d7f5b795199ef",
+                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/27202a1acdd03f426e63dc2b25b019e490569fd5",
+                "reference": "27202a1acdd03f426e63dc2b25b019e490569fd5",
                 "shasum": ""
             },
             "require": {
@@ -3876,7 +4089,7 @@
                 "vimeo",
                 "youtube"
             ],
-            "time": "2015-10-27 09:02:52"
+            "time": "2015-11-02 16:39:17"
         },
         {
             "name": "sonata-project/news-bundle",
@@ -3884,12 +4097,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataNewsBundle.git",
-                "reference": "450ba9e112ed9e7f9e6521d478f86d3543baee43"
+                "reference": "6a92da6d728e2ed6cb93efe7363bf3c8d5e8c462"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataNewsBundle/zipball/450ba9e112ed9e7f9e6521d478f86d3543baee43",
-                "reference": "450ba9e112ed9e7f9e6521d478f86d3543baee43",
+                "url": "https://api.github.com/repos/sonata-project/SonataNewsBundle/zipball/6a92da6d728e2ed6cb93efe7363bf3c8d5e8c462",
+                "reference": "6a92da6d728e2ed6cb93efe7363bf3c8d5e8c462",
                 "shasum": ""
             },
             "require": {
@@ -3954,7 +4167,7 @@
                 "post",
                 "sonata"
             ],
-            "time": "2015-10-28 08:55:37"
+            "time": "2015-11-02 15:18:57"
         },
         {
             "name": "sonata-project/notification-bundle",
@@ -4725,7 +4938,9 @@
         "sonata-project/easy-extends-bundle": 20,
         "sonata-project/classification-bundle": 20,
         "liip/theme-bundle": 20,
-        "sonata-project/datagrid-bundle": 20
+        "sonata-project/datagrid-bundle": 20,
+        "evheniy/jquery-bundle": 20,
+        "evheniy/html5-cache-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

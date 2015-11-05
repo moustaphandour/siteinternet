@@ -1,0 +1,18 @@
+<div class="c-sidebar">
+<div class="c-sidebar__title">Categories</div>
+  <a href="#">Accueil</a>
+  <ul>
+      {% for root in root_category if root.name == "default"%}
+        {% for category in root.getChildren()  if category.name == "Tapha" %}
+           <li>
+              <a href="#">{{category.name}}</a>
+              <ul>
+                {% for children in category.getChildren() %}
+                  <li><a href="#">{{children.name}}</a></li>
+                {%endfor%}
+              </ul>
+          </li>
+        {%endfor%}
+      {%endfor%}
+  </ul>
+</div>

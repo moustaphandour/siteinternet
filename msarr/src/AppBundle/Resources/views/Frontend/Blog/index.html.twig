@@ -1,0 +1,29 @@
+{% extends 'AppBundle:Frontend/Layout:main.html.twig' %}
+
+{% block content %}
+	<div class="container margin--t">
+		<div class="row">
+			<div class="col-sm-push-9">
+                {{ render(controller('AppBundle:Frontend/Navbar:blogList')) }}
+			</div>
+			<div class="col-sm-pull-3 col-sm-9 col-md-pull-1 col-md-7 col-lg-pull-2 col-lg-6">
+			{% for post in en%}
+				<article>
+					  <header>
+					    <h1>{{post.getTitle()}}</h1>
+					  </header>
+					  <section class="main_review">
+					  	{% media post.getImage(), 'small' %}
+					    <p>{{post.getContent()}}</p>
+					  </section>
+					<footer>
+					    <p>
+					      Posté le {{post.getYear() }} - {{ post.getMonth() }} - {{post.getDay() }}
+					    </p>
+					</footer>
+				</article>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock content %}

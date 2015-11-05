@@ -20,13 +20,16 @@ class AppKernel extends Kernel
             new BlogBundle\BlogBundle(),
             new FOS\UserBundle\FOSUserBundle(),
 
-
+            new Sonata\NewsBundle\SonataNewsBundle(),
+            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+            new Sonata\FormatterBundle\SonataFormatterBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+        
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
-            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new FM\ElfinderBundle\FMElfinderBundle(),
 
 
@@ -42,13 +45,15 @@ class AppKernel extends Kernel
             new Sonata\ClassificationBundle\SonataClassificationBundle(),
             new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
 
-            new Sonata\NewsBundle\SonataNewsBundle(),
-            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             
-            new Sonata\FormatterBundle\SonataFormatterBundle(),
-            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
 
             new Liip\ThemeBundle\LiipThemeBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
+
+            new Evheniy\JqueryBundle\JqueryBundle(),
+            new Evheniy\HTML5CacheBundle\HTML5CacheBundle(),
+            new Evheniy\HTML5VertiTemplateBundle\HTML5VertiTemplateBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

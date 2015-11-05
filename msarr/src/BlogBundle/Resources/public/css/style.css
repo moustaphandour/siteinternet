@@ -1,4 +1,4 @@
-#logo {
+#logo_fr {
     background-color:black;
     color:white;
     text-align:center;
@@ -6,7 +6,7 @@
     height: 50px;
     padding:5px;
 }
-#header {
+#header_fr {
 	position: relative;
 	height: 50px;
     background-color:black;
@@ -14,7 +14,7 @@
     text-align:left;
     padding:5px;
 }
-#nav {
+#nav_fr {
     line-height:30px;
     background-color:#eeeeee;
     height:300px;
@@ -22,12 +22,12 @@
     float:left;
     padding:5px; 
 }
-#section {
+#section_fr {
     width:350px;
     float:left;
     padding:10px; 
 }
-#footer {
+#footer_fr {
     background-color:black;
     color:white;
     clear:both;
@@ -36,13 +36,7 @@
 }
 /************** nav => Debut **************/
 
-div a {
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    padding: 15px;
-    display:inline-block;
-}
+
 ul {
   display: inline;
   margin: 0;
