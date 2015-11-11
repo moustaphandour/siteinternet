@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class NavbarController extends Controller
 {
-    public function blogListAction()
+    public function indexAction()
     {
         $category = $this->get('sonata.classification.manager.category')->getRootCategories();
         return $this->render('AppBundle:Frontend/Blog:blog_navbar.html.twig', array(

@@ -3,6 +3,7 @@ HTML5_verti_template:
 blog:
     resource: "@BlogBundle/Resources/config/routing.yml"
 
+
 app:
     resource: "@AppBundle/Controller/Frontend/"
     type:     annotation

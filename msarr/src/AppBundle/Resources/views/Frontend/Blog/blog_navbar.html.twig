@@ -1,18 +1,19 @@
-<div class="c-sidebar">
-<div class="c-sidebar__title">Categories</div>
-  <a href="#">Accueil</a>
-  <ul>
-      {% for root in root_category if root.name == "default"%}
-        {% for category in root.getChildren()  if category.name == "Tapha" %}
-           <li>
-              <a href="#">{{category.name}}</a>
-              <ul>
-                {% for children in category.getChildren() %}
-                  <li><a href="#">{{children.name}}</a></li>
-                {%endfor%}
-              </ul>
-          </li>
+{% for root in root_category if root.name == "default"%}
+    {% for category in root.getChildren()  if category.name == "Tapha" %}
+        <li class="active"><a href="#">Accueil</a></li>
+            <li class="dropdown">
+        {% for children in category.getChildren() %}    
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                        {{children.name}} <b class="caret"></b>
+                    </a>
+                <ul class="dropdown-menu">
+                    {% for child in children.getChildren() %}
+                        <li><a tabindex="-1" href="#">{{child.name}}</a></li>
+                    {%endfor%}
+                      <li><a tabindex="-1" href="#">Evenements</a></li>  
+                </ul>
         {%endfor%}
-      {%endfor%}
-  </ul>
-</div>
+            </li>
+    {%endfor%}
+{%endfor%}
+

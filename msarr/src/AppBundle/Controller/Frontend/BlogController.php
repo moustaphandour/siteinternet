@@ -17,6 +17,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BlogController extends Controller
 {
+    private $eventRepository;
 	/**
      * @Route("/", name="homepage")
      * @Route("/", name="blog_frontend_index")
@@ -27,12 +28,28 @@ class BlogController extends Controller
     {
     	$em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BlogBundle:Post')->getActiveArticles(10);
         $posts = $this->get('sonata.news.manager.post')->findAll();
     	$category = $this->get('sonata.classification.manager.category')->getRootCategories();
-        return $this->render('AppBundle:Frontend/Blog:index.html.twig', array(
-              'root_category' => $category,
-              'en' => $posts
-          ));
+        return $this->render('AppBundle:Frontend/Blog:index.html.twig', array('en' => $posts ));
     }
+
+    public function showArticleAction(Post $post)
+    {
+        $routing_params = $post->getRoutingParams();
+        unset($routing_params['id']);
+        foreach ($routing_params AS $key => $value)
+            if($this->get('request')->get($key) != $value)
+                return $this->redirect($this->generateUrl('blog_post_show', $post->getRoutingParams()));
+        
+        $comment = new Comment();
+        $comment->setIp($this->getRequest()->getClientIp());
+        $form   = $this->createForm(new CommentType(), $comment);
+        
+        return array(
+            'entity'            => $post,
+            'form'              => $form->createView(),
+            'facebook_api_id'   => $this->container->getParameter('mv_blog.facebook_api_id')
+        );
+    }
+
 }

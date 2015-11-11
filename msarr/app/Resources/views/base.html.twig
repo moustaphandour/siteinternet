@@ -1,57 +1,169 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>
-            {% block title %}Welcome!{% endblock %}
-        </title>
-        {% block stylesheets %}
-            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/blog/css/style.css') }}" />
-            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        {% endblock %}
-        
-    </head>
-    <body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
+    <title>TAPHA SITE BASE</title>
 
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/carousel.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/simple-sidebar.css') }}" rel="stylesheet">
 
-        <div id="header">
+    <script src="{{ asset('bundles/app/js/ie-emulation-modes-warning.js') }}"></script>
+
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+  </head>
+
+  <body>
+    <!-- NAVBAR
+================================================== -->
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#" style="width: 165px;">Project name</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+              {%block navbar%}
+                {{ render(controller('AppBundle:Frontend/Navbar:index')) }}
+              {%endblock%}
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+
+ <!-- ENDNAVBAR
+================================================== -->
+
+ <!-- Container
+================================================== -->
+
+<div class="container-fluid">
+    
+    <div class="row row-offcanvas row-offcanvas-left">
+             <!-- SIDEBAR
+================================================== -->
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" style="width: 150px;">
             
-            <img src="{{ asset('bundles/blog/img/logo.png') }}" width="10%" height="100%" alt="my alt of image" class="pull-left">
+            <div class="sidebar-nav">
+                <button type="button" class="btn btn-primary" style=" width: 100%;">Evenements</button>
 
-            
-            {% block header %}
+            {% block sidebar%}
+                {{ render(controller('AppBundle:Frontend/Sidebar:index')) }}
             {% endblock %}
+            </div>
+        </div>
+    
+                 <!-- ENDSIDEBAR
+================================================== -->
+        <div class="col-xs-12 col-sm-9">
+
+
+                   <!-- Carousel
+====================================================== -->
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner" role="listbox">
+                {%block carousel%}
+               
+                {{ render(controller('AppBundle:Frontend/Carousel:index')) }}
+
+                {%endblock carousel%}
+              </div>
+              <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+        <!-- /.carousel -->
+            <br>
+            <div class="jumbotron" style="width: 120%;">
+                <a href="#" class="visible-xs" data-toggle="offcanvas">
+                    <i class="fa fa-lg fa-reorder"></i>
+                </a>
+                <div class="row">
+                  {% block content %}
+                    <div class="col-6 col-sm-6 col-lg-4">
+                        <h2>Heading</h2>
+                            <p>Bootstrap is a front-end framework that uses CSS and JavaScript to facilitate responsive Web design. Bootply is a playground for Bootstrap that enables developers and designers to test, prototype and create mockups using Bootstrap
+                                friendly HTML, CSS and Javascript.</p>
+                            <p>
+                            <a class="btn btn-default" href="#">View details »</a></p>
+                    </div>
+                  {% endblock %}   
+                </div>
+                    <!--/row-->
+            </div>
+            <!--/span-->
         </div>
 
-        <div id="nav">
-            {% block nav %}
-            London<br>
-            Paris<br>
-            Tokyo<br>
-            {% endblock %}
-        </div>
 
-        <div id="section">
-            {% block content %}
-            <h1>London</h1>
-            <p>
-            London is the capital city of England. It is the most populous city in the United Kingdom,
-            with a metropolitan area of over 13 million inhabitants.
-            </p>
-            <p>
-            Standing on the River Thames, London has been a major settlement for two millennia,
-            its history going back to its founding by the Romans, who named it Londinium.
-            </p>
-            {% endblock %}
-        </div>
+    </div>
+    <!--/row-->
 
-        <div id="footer">
-            {% block footer %}
-            Copyright © W3Schools.com
-            {% endblock %}
-        </div>
+    <hr>
 
-</body>
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
 
+</div>
+<!--/.container-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ asset('bundles/app/js/jquery.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/bootstrap_hover.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="{{ asset('bundles/app/js/holder.min.js') }}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{ asset('bundles/app/js/ie10-viewport-bug-workaround.js') }}"></script>
+    <!-- Menu Toggle Script -->
+    <script>
+    $(document).ready(function() {
+  $('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+});
+    </script>
+  </body>
 </html>
