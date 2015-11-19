@@ -1,0 +1,12 @@
+{% if pagination|length %}
+	<div class="js-media-content js-noisotope">
+	    {% include 'AppBundle:Frontend/Blog:indexAjaxElements.html.twig' %}
+	</div>
+	{{ knp_pagination_render(pagination) }}
+{% else %}
+   {%  if (app.request.attributes.get('_route') == 'blog_frontend_index') %}
+	   There are no articles yet!
+   {% else %}
+	   There are no articles within this criteria.
+   {% endif %}
+{% endif %}

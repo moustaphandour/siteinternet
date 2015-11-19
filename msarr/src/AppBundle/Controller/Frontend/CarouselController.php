@@ -20,10 +20,7 @@ class CarouselController extends Controller
      
     public function indexAction()
     {
-        $posts = $this->get('sonata.news.manager.post')->findby(array(
-          'enabled' => true), array(
-          'createdAt' => 'desc'), 3, 0
-          );
+        $posts = $this->get('app_repository_article')->getActiveArticles(3);
 
         //$posts = $this->get('sonata.news.manager.post')->findAll();
         return $this->render('AppBundle:Frontend/Blog:blog_carousel.html.twig', array('posts' => $posts));

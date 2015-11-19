@@ -34,6 +34,7 @@ class EventAdmin extends Admin
     {
        $datagridMapper
             ->add('name')
+            ->add('time')
             ->add('details')
        ;
     }

@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 namespace AppBundle\Controller\Frontend;
+use ED\BlogBundle\Model\Entity\Taxonomy;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,9 +17,15 @@ class NavbarController extends Controller
 {
     public function indexAction()
     {
-        $category = $this->get('sonata.classification.manager.category')->getRootCategories();
+        $categories = $this->get('app_repository_taxonomy')
+              ->createQueryBuilder('c')
+              ->where('c.parent IS NULL')
+              ->andWhere('c.type = :categoryType')
+              ->setParameter('categoryType', Taxonomy::TYPE_CATEGORY)
+              ->getQuery()
+              ->getResult();
         return $this->render('AppBundle:Frontend/Blog:blog_navbar.html.twig', array(
-              'root_category' => $category,
+              'categories' => $categories,
           ));
     }
 }

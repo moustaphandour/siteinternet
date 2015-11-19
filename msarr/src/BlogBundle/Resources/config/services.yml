@@ -2,7 +2,7 @@ services:
     app.admin.event:
         class: BlogBundle\Admin\EventAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Evenements", label: "Evenements" }
+            - { name: sonata.admin, manager_type: orm, group: "GESTION DU SITE", label: "Evenements" }
         arguments:
             - ~
             - BlogBundle\Entity\Event
@@ -12,21 +12,62 @@ services:
     app.admin.team:
         class: BlogBundle\Admin\TeamAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Evenements", label: "Equipes" }
+            - { name: sonata.admin, manager_type: orm, group: "GESTION DU SITE", label: "Equipes" }
         arguments:
             - ~
             - BlogBundle\Entity\Team
             - ~
         calls:
             - [ setTranslationDomain, [BlogBundle]]
-    # app.admin.image:
-    #     class: BlogBundle\Admin\ImageAdmin
-    #     tags:
-    #         - { name: sonata.admin, manager_type: orm, group: "Media", label: "Category" }
-    #     arguments:
-    #         - ~
-    #         - BlogBundle\Entity\Image
-    #         - ~
-    #     calls:
-    #         - [ setTranslationDomain, [BlogBundle]]
+    app.admin.article:
+        class: BlogBundle\Admin\ArticleAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "GESTION DU SITE", label: "Article" }
+        arguments:
+            - ~
+            - BlogBundle\Entity\Article
+            - ~
+        calls:
+            - [ setTranslationDomain, [BlogBundle]]
+    app.admin.category:
+        class: BlogBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "GESTION DU SITE", label: "Categorie" }
+        arguments:
+            - ~
+            - BlogBundle\Entity\Taxonomy
+            - ~
+        calls:
+            - [ setTranslationDomain, [BlogBundle]]
+
+    app.admin.term:
+        class: BlogBundle\Admin\TermAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "GESTION DU SITE", label: "Term" } 
+        arguments:
+            - ~
+            - BlogBundle\Entity\Term
+            - 'SonataAdminBundle:CRUD'
+        calls:
+            - [ setTranslationDomain, [BlogBundle]]
+    app.admin.articlemeta:
+        class: BlogBundle\Admin\ArticleMetaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "GESTION DU SITE", label: "Article Meta" }
+        arguments:
+            - ~
+            - BlogBundle\Entity\ArticleMeta
+            - ~
+        calls:
+            - [ setTranslationDomain, [BlogBundle]]
+    app.admin.user:
+        class: BlogBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "GESTION DU SITE", label: "Gestionnaires" }
+        arguments:
+            - ~
+            - BlogBundle\Entity\User
+            - 
+        calls:
+            - [ setTranslationDomain, [BlogBundle]]
 

@@ -1,19 +1,20 @@
-{% for root in root_category if root.name == "default"%}
-    {% for category in root.getChildren()  if category.name == "Tapha" %}
-        <li class="active"><a href="#">Accueil</a></li>
-            <li class="dropdown">
-        {% for children in category.getChildren() %}    
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
-                        {{children.name}} <b class="caret"></b>
-                    </a>
-                <ul class="dropdown-menu">
-                    {% for child in children.getChildren() %}
-                        <li><a tabindex="-1" href="#">{{child.name}}</a></li>
-                    {%endfor%}
-                      <li><a tabindex="-1" href="#">Evenements</a></li>  
-                </ul>
-        {%endfor%}
-            </li>
+{% if (categories|length) %}
+    {% for children in categories %}
+        <li class="dropdown">
+            <a href="{{ path('frontend_blog_by_category', {'categorySlug': children.term.slug}) }}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10" data-close-others="false">
+                        {{children.term.title}} 
+                        <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                {% for child in children.getChildren() %}
+                    <li>
+                        <a tabindex="-1" href="{{ path('frontend_blog_by_category', {'categorySlug': child.term.slug}) }}">{{child.term.title}}
+                        </a>
+                    </li>
+                {%endfor%}
+                <li><a tabindex="-1" href="#">Evenements</a></li>  
+            </ul>
+        </li>
     {%endfor%}
-{%endfor%}
+{%endif%}
 

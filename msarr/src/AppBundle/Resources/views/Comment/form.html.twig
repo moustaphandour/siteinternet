@@ -1,9 +1,8 @@
-{% if is_granted('ACCESS_COMMENTS_LIST') and is_granted('CREATE_COMMENT') %}
     <div id="comment-form" class="row margin--doublet">
         <div class="col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8 black text--16 text--bold margin--b">Leave your comment
         </div>
         <div class="col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8 black">
-            <form class="js-comment-form js-single-submit" method="post" action="{{ path('ed_blog_admin_comment_create', { 'slug' : article.slug }) }}">
+            <form class="js-comment-form js-single-submit" method="post" action="">
                 {{ form_errors(form) }}
                 {% if not app.user %}
                     <div>
@@ -37,6 +36,3 @@
             </form>
         </div>
     </div>
-{% elseif is_granted('ACCESS_COMMENTS_LIST') %}
-    {% include "@EDBlog/Comment/loginToCreateComments.html.twig" %}
-{% endif %}

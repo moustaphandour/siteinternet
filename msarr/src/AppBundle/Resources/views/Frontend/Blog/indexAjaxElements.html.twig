@@ -1,0 +1,15 @@
+{% for item in pagination %}
+	<div class="col-sm-4">
+		<a class="app-blue text--bold text--upper" href="{{ path('frontend_blog_single_article', { 'slug': item.slug })}} ">
+			<div class="c-article">
+				<div class="c-article__full">{% media item.excerptPhoto, 'big' with {'class' : "img-rounded" , 'width' : '100%' , 'height'  : '150px'} %}</div>
+				<div class="text--30 text--bold black margin--halfb lh32"><a class="black" href="" "font-size:x-small;">{{ item.title }}</a></div>
+	    		<p class="margin--t" style ="font-size:xx-small;">{{ item.createdAt | format_datetime}}</p>
+	    	</div>
+		 </a>
+		
+	</div>
+	{% if loop.index % 4  == 0 %}
+		<br>
+	{% endif %}
+{% endfor %}

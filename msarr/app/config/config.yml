@@ -3,7 +3,6 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: sonata_admin.yml }
-    - { resource: sonata/classification.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -42,7 +41,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ BlogBundle , AppBundle, JqueryBundle, HTML5VertiTemplateBundle]
+    bundles:        [EDBlogBundle , BlogBundle , AppBundle, JqueryBundle, HTML5VertiTemplateBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -101,15 +100,8 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class:      Application\Sonata\UserBundle\Entity\User
+    user_class:     BlogBundle\Entity\User
 
-
-    group:
-        group_class:   Application\Sonata\UserBundle\Entity\Group
-        group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
-
-    service:
-        user_manager: sonata.user.orm.user_manager
 
 sonata_block:
     default_contexts: [cms]
@@ -178,9 +170,6 @@ fm_elfinder:
                         upload_deny: ['all']
                         upload_max_size: 2M
 
-sonata_user:
-    security_acl: true
-    manager_type: orm # can be orm or mongodb
 
 sonata_media:
     # if you don't use default namespace configuration
@@ -201,32 +190,7 @@ sonata_media:
 
             formats:
                 small: { width: 100 , quality: 70}
-                big:   { width: 500 , quality: 70}
-        sonata_collection:
-            providers:
-              - sonata.media.provider.image
-
-            formats:
-                preview: { width: 100, quality: 100}
-                wide:    { width: 820, quality: 100}
-
-        sonata_category:
-            providers:
-              - sonata.media.provider.image
-
-            formats:
-                preview: { width: 100, quality: 100}
-                wide:    { width: 820, quality: 100}
-        news:
-            providers:
-                - sonata.media.provider.dailymotion
-                - sonata.media.provider.youtube
-                - sonata.media.provider.image
-
-            formats:
-                small: { width: 150 , quality: 95}
-                big:   { width: 500 , quality: 90}
-
+                big:   { width: 250 , height: 300 , quality: 140}
     cdn:
         server:
             path: /web/uploads/media # http://media.sonata-project.org/
@@ -247,45 +211,25 @@ html5_verti_template: ~
 jquery:
     local: '@AppBundle/Resources/public/js/jquery-1.11.3.min.js'
 
-sonata_news:
-    title:        Tapha
-    link:         https://sonata-project.org
-    description:  Cool bundles on top of Symfony2
-    salt:         'secureToken'
-    permalink_generator: sonata.news.permalink.date # sonata.news.permalink.collection
+ed_blog:
+    entities:
+        user_model_class: BlogBundle\Entity\User
+        article_class: BlogBundle\Entity\Article
+        article_meta_class: BlogBundle\Entity\ArticleMeta
+        blog_term_class: BlogBundle\Entity\Term
+        blog_taxonomy_class: BlogBundle\Entity\Taxonomy
+        blog_taxonomy_relation_class: BlogBundle\Entity\TaxonomyRelation
+        blog_comment_class: BlogBundle\Entity\Comment
+        blog_settings_class: BlogBundle\Entity\Settings
 
-    comment:
-        notification:
-            emails:   [email@example.org, email2@example.org]
-            from:     no-reply@sonata-project.org
-            template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
 
-sonata_formatter:
-    formatters:
-        markdown:
-            service: sonata.formatter.text.markdown
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-                - sonata.media.formatter.twig
-
-        text:
-            service: sonata.formatter.text.text
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-                - sonata.media.formatter.twig
-
-        rawhtml:
-            service: sonata.formatter.text.raw
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-                - sonata.media.formatter.twig
-
-        richhtml:
-            service: sonata.formatter.text.raw
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-                - sonata.media.formatter.twig
+    filter_sets:
+        cache: ~
+        my_thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [120, 90], mode: outbound }

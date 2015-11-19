@@ -20,10 +20,10 @@ class AppKernel extends Kernel
             new BlogBundle\BlogBundle(),
             new FOS\UserBundle\FOSUserBundle(),
 
-            new Sonata\NewsBundle\SonataNewsBundle(),
-            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
-            new Sonata\FormatterBundle\SonataFormatterBundle(),
-            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            // new Sonata\NewsBundle\SonataNewsBundle(),
+            // new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+            //new Sonata\FormatterBundle\SonataFormatterBundle(),
+            //new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
         
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
@@ -32,6 +32,11 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new FM\ElfinderBundle\FMElfinderBundle(),
 
+            new ED\BlogBundle\EDBlogBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Eko\FeedBundle\EkoFeedBundle(),
 
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
@@ -39,11 +44,11 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
 
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
-            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            // new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            // new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
 
-            new Sonata\ClassificationBundle\SonataClassificationBundle(),
-            new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
+            // new Sonata\ClassificationBundle\SonataClassificationBundle(),
+            // new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
 
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             

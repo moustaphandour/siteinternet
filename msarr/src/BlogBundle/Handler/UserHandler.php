@@ -3,9 +3,9 @@
 
 namespace BlogBundle\Handler;
 
-use BlogBundle\Entiy\BlogUser;
+use BlogBundle\Entiy\User;
 
-class BlogUserHandler
+class UserHandler
 {
     public function getBlogRolesArray()
     {
